@@ -11,6 +11,7 @@ class MyDocument extends Document {
         <Head />
         <body>
           <Main />
+          {/* 这是主页 */}
           <NextScript />
         </body>
       </Html>
