@@ -3,27 +3,34 @@ import { Section } from '../layout/Section';
 
 const VerticalFeatures = () => (
   <Section
-    title="Your title here"
-    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada nisi tellus, non imperdiet nisi tempor at."
+    title="特色功能"
+    description="探索我们的特色功能，为您提供无与伦比的体验"
   >
     <VerticalFeatureRow
-      title="Your title here"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum, nunc non posuere consectetur, justo erat semper enim, non hendrerit dui odio id enim."
+      title="高质量吉卜力风格图像"
+      description="我们的 AI 技术可以生成高质量的吉卜力风格图像，让您的创作更加精美"
       image="/assets/images/feature.svg"
-      imageAlt="First feature alt text"
+      imageAlt="高质量吉卜力风格图像"
     />
     <VerticalFeatureRow
-      title="Your title here"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum, nunc non posuere consectetur, justo erat semper enim, non hendrerit dui odio id enim."
+      title="简单易用的界面"
+      description="我们的用户界面设计简洁明了，让您轻松上手，无需复杂的操作"
       image="/assets/images/feature2.svg"
-      imageAlt="Second feature alt text"
+      imageAlt="简单易用的界面"
       reverse
     />
     <VerticalFeatureRow
-      title="Your title here"
-      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum, nunc non posuere consectetur, justo erat semper enim, non hendrerit dui odio id enim."
+      title="快速生成"
+      description="我们的 AI 技术可以在短时间内快速生成吉卜力风格图像，让您的创作更加高效"
       image="/assets/images/feature3.svg"
-      imageAlt="Third feature alt text"
+      imageAlt="快速生成"
+    />
+    <VerticalFeatureRow
+      title="多样化的风格选项"
+      description="我们提供多种不同的风格选项，让您可以根据自己的喜好生成不同风格的吉卜力风格图像"
+      image="/assets/images/feature4.svg"
+      imageAlt="多样化的风格选项"
+      reverse
     />
   </Section>
 );
