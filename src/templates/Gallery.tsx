@@ -12,25 +12,25 @@ const Gallery = () => {
     >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* 这里可以添加示例图片 */}
-        <div className="overflow-hidden rounded-lg">
+        <div className="aspect-square overflow-hidden rounded-lg">
           <img
             src="/assets/images/sample1.jpg"
             alt="示例图片1"
-            className="w-full"
+            className="size-full object-cover"
           />
         </div>
-        <div className="overflow-hidden rounded-lg">
+        <div className="aspect-square overflow-hidden rounded-lg">
           <img
             src="/assets/images/sample2.jpg"
             alt="示例图片2"
-            className="w-full"
+            className="size-full object-cover"
           />
         </div>
-        <div className="overflow-hidden rounded-lg">
+        <div className="aspect-square overflow-hidden rounded-lg">
           <img
             src="/assets/images/sample3.jpg"
             alt="示例图片3"
-            className="w-full"
+            className="size-full object-cover"
           />
         </div>
       </div>
