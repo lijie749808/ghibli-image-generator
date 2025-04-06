@@ -4,7 +4,6 @@ import { useLanguage } from '../contexts/LanguageContext';
 import ImageGenerator from '../components/ImageGenerator';
 import { Meta } from '../layout/Meta';
 import { AppConfig } from '../utils/AppConfig';
-import { Banner } from './Banner';
 import { Footer } from './Footer';
 import { Gallery } from './Gallery';
 import { Hero } from './Hero';
@@ -27,7 +26,6 @@ const Base = () => {
       <Gallery />
       <HowToUse />
       <VerticalFeatures />
-      <Banner />
       <Footer />
     </div>
   );
