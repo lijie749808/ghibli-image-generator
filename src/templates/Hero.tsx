@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import { Background } from '../background/Background';
 import { Button } from '../button/Button';
@@ -12,30 +12,79 @@ import { translations } from '../utils/translations';
 
 const Hero = () => {
   const [prompt, setPrompt] = useState('');
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
   const t = translations[language];
+  const languageMenuRef = useRef<HTMLLIElement>(null);
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
   };
 
+  const toggleLanguageMenu = () => {
+    setIsLanguageMenuOpen(!isLanguageMenuOpen);
+  };
+
+  const handleLanguageSelect = (lang: 'zh' | 'en' | 'ja') => {
+    setLanguage(lang);
+    setIsLanguageMenuOpen(false);
+  };
+
+  // 点击外部区域关闭下拉菜单
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (languageMenuRef.current && !languageMenuRef.current.contains(event.target as Node)) {
+        setIsLanguageMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <Background color="bg-gray-100">
       <Section yPadding="py-6">
         <NavbarTwoColumns logo={<Logo xl />}>
-          <li>
-            <select 
-              value={language} 
-              onChange={(e) => setLanguage(e.target.value as 'zh' | 'en' | 'ja')}
-              className="rounded border border-gray-300 bg-white px-2 py-1 text-gray-800"
+          <li className="relative" ref={languageMenuRef}>
+            <button 
+              className="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"
+              onClick={toggleLanguageMenu}
             >
-              <option value="zh">{t.chinese}</option>
-              <option value="en">{t.english}</option>
-              <option value="ja">{t.japanese}</option>
-            </select>
+              <span>{t.language}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isLanguageMenuOpen && (
+              <div className="absolute right-0 mt-1 w-32 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg transition-all">
+                <div className="flex flex-col">
+                  <button 
+                    onClick={() => handleLanguageSelect('zh')} 
+                    className={`px-4 py-2 text-left text-sm transition-colors hover:bg-gray-50 hover:text-primary-500 ${language === 'zh' ? 'bg-gray-50 text-primary-500' : 'text-gray-700'}`}
+                  >
+                    {t.chinese}
+                  </button>
+                  <button 
+                    onClick={() => handleLanguageSelect('en')} 
+                    className={`px-4 py-2 text-left text-sm transition-colors hover:bg-gray-50 hover:text-primary-500 ${language === 'en' ? 'bg-gray-50 text-primary-500' : 'text-gray-700'}`}
+                  >
+                    {t.english}
+                  </button>
+                  <button 
+                    onClick={() => handleLanguageSelect('ja')} 
+                    className={`px-4 py-2 text-left text-sm transition-colors hover:bg-gray-50 hover:text-primary-500 ${language === 'ja' ? 'bg-gray-50 text-primary-500' : 'text-gray-700'}`}
+                  >
+                    {t.japanese}
+                  </button>
+                </div>
+              </div>
+            )}
           </li>
           <li>
-            <Link href="/">{t.signIn}</Link>
+            <Link href="/" className="text-gray-700 hover:text-primary-500 transition-colors">{t.signIn}</Link>
           </li>
         </NavbarTwoColumns>
       </Section>
