@@ -1,4 +1,5 @@
 import { AppConfig } from '../utils/AppConfig';
+import { useLanguage } from '../contexts/LanguageContext';
 
 type ILogoProps = {
   xl?: boolean;
@@ -9,6 +10,7 @@ const Logo = (props: ILogoProps) => {
   const fontStyle = props.xl
     ? 'font-semibold text-3xl'
     : 'font-semibold text-xl';
+  const { language } = useLanguage();
 
   return (
     <span className={`inline-flex items-center text-gray-900 ${fontStyle}`}>
@@ -30,7 +32,7 @@ const Logo = (props: ILogoProps) => {
         <path d="M4 20h14" />
       </svg>
 
-      {AppConfig.site_name}
+      {AppConfig.site_name[language as keyof typeof AppConfig.site_name]}
     </span>
   );
 };

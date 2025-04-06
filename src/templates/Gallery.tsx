@@ -3,33 +3,38 @@
 import React from 'react';
 
 import { Section } from '@/layout/Section';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/utils/translations';
 
 const Gallery = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <Section
-      title="图库展示"
-      description="欣赏由我们的 AI 生成的精选吉卜力风格图像"
+      title={t.galleryTitle}
+      description={t.galleryDescription}
     >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {/* 这里可以添加示例图片 */}
         <div className="aspect-square overflow-hidden rounded-lg">
           <img
             src="/assets/images/sample1.jpg"
-            alt="示例图片1"
+            alt={`${t.galleryTitle} 1`}
             className="size-full object-cover"
           />
         </div>
         <div className="aspect-square overflow-hidden rounded-lg">
           <img
             src="/assets/images/sample2.jpg"
-            alt="示例图片2"
+            alt={`${t.galleryTitle} 2`}
             className="size-full object-cover"
           />
         </div>
         <div className="aspect-square overflow-hidden rounded-lg">
           <img
             src="/assets/images/sample3.jpg"
-            alt="示例图片3"
+            alt={`${t.galleryTitle} 3`}
             className="size-full object-cover"
           />
         </div>
