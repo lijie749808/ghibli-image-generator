@@ -7,9 +7,13 @@ import { HeroOneButton } from '../hero/HeroOneButton';
 import { Section } from '../layout/Section';
 import { NavbarTwoColumns } from '../navigation/NavbarTwoColumns';
 import { Logo } from './Logo';
+import { useLanguage } from '../contexts/LanguageContext';
+import { translations } from '../utils/translations';
 
 const Hero = () => {
   const [prompt, setPrompt] = useState('');
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language];
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
@@ -20,12 +24,18 @@ const Hero = () => {
       <Section yPadding="py-6">
         <NavbarTwoColumns logo={<Logo xl />}>
           <li>
-            <Link href="https://github.com/ixartz/Next-JS-Landing-Page-Starter-Template">
-              GitHub
-            </Link>
+            <select 
+              value={language} 
+              onChange={(e) => setLanguage(e.target.value as 'zh' | 'en' | 'ja')}
+              className="rounded border border-gray-300 bg-white px-2 py-1 text-gray-800"
+            >
+              <option value="zh">{t.chinese}</option>
+              <option value="en">{t.english}</option>
+              <option value="ja">{t.japanese}</option>
+            </select>
           </li>
           <li>
-            <Link href="/">Sign in</Link>
+            <Link href="/">{t.signIn}</Link>
           </li>
         </NavbarTwoColumns>
       </Section>
@@ -34,11 +44,12 @@ const Hero = () => {
         <HeroOneButton
           title={
             <>
-              {'用AI创建\n'}
-              <span className="text-primary-500">吉卜力风格的梦幻艺术</span>
+              {t.heroTitle.split('\n')[0]}
+              <br />
+              <span className="text-primary-500">{t.heroTitle.split('\n')[1]}</span>
             </>
           }
-          description="只需输入提示词，即可生成宫崎骏风格的精美图像"
+          description={t.heroDescription}
           button={
             <>
               <div className="mx-auto mb-6 max-w-md">
@@ -47,7 +58,7 @@ const Hero = () => {
                     type="text"
                     value={prompt}
                     onChange={handlePromptChange}
-                    placeholder="输入提示词，例如：森林中的小屋，阳光透过树叶"
+                    placeholder={t.promptPlaceholder}
                     className="w-full rounded-lg border-2 border-gray-200 bg-white px-4 py-3 pr-10 text-gray-700 shadow-sm transition-all focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
                   />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
@@ -67,7 +78,7 @@ const Hero = () => {
                 </div>
               </div>
               <Link href="#generator">
-                <Button xl>开始创作</Button>
+                <Button xl>{t.startCreating}</Button>
               </Link>
             </>
           }
