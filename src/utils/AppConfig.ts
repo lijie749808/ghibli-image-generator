@@ -14,7 +14,7 @@ export const AppConfig = {
     en: 'Generate Miyazaki Ghibli style images using artificial intelligence, just enter a prompt to create dreamlike artwork',
     ja: '人工知能を使用して宮崎駿ジブリスタイルの画像を生成し、プロンプトを入力するだけで夢のようなアートワークを作成できます'
   },
-  locale: 'zh', // 默认语言
+  locale: 'en', // 默认语言
   
   // 获取当前语言的配置
   getConfig(language: 'zh' | 'en' | 'ja') {
