@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Background } from '../background/Background';
 import { Button } from '../button/Button';
+import { useLanguage } from '../contexts/LanguageContext';
 import { HeroOneButton } from '../hero/HeroOneButton';
 import { Section } from '../layout/Section';
 import { NavbarTwoColumns } from '../navigation/NavbarTwoColumns';
-import { Logo } from './Logo';
-import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../utils/translations';
+import { Logo } from './Logo';
 
 const Hero = () => {
   const [prompt, setPrompt] = useState('');
@@ -33,7 +33,10 @@ const Hero = () => {
   // 点击外部区域关闭下拉菜单
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (languageMenuRef.current && !languageMenuRef.current.contains(event.target as Node)) {
+      if (
+        languageMenuRef.current &&
+        !languageMenuRef.current.contains(event.target as Node)
+      ) {
         setIsLanguageMenuOpen(false);
       }
     };
@@ -49,32 +52,43 @@ const Hero = () => {
       <Section yPadding="py-6">
         <NavbarTwoColumns logo={<Logo xl />}>
           <li className="relative" ref={languageMenuRef}>
-            <button 
-              className="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"
+            <button
+              className="flex items-center space-x-1 text-gray-700 transition-colors hover:text-primary-500"
               onClick={toggleLanguageMenu}
             >
               <span>{t.language}</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="size-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
             {isLanguageMenuOpen && (
               <div className="absolute right-0 mt-1 w-32 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg transition-all">
                 <div className="flex flex-col">
-                  <button 
-                    onClick={() => handleLanguageSelect('zh')} 
+                  <button
+                    onClick={() => handleLanguageSelect('zh')}
                     className={`px-4 py-2 text-left text-sm transition-colors hover:bg-gray-50 hover:text-primary-500 ${language === 'zh' ? 'bg-gray-50 text-primary-500' : 'text-gray-700'}`}
                   >
                     {t.chinese}
                   </button>
-                  <button 
-                    onClick={() => handleLanguageSelect('en')} 
+                  <button
+                    onClick={() => handleLanguageSelect('en')}
                     className={`px-4 py-2 text-left text-sm transition-colors hover:bg-gray-50 hover:text-primary-500 ${language === 'en' ? 'bg-gray-50 text-primary-500' : 'text-gray-700'}`}
                   >
                     {t.english}
                   </button>
-                  <button 
-                    onClick={() => handleLanguageSelect('ja')} 
+                  <button
+                    onClick={() => handleLanguageSelect('ja')}
                     className={`px-4 py-2 text-left text-sm transition-colors hover:bg-gray-50 hover:text-primary-500 ${language === 'ja' ? 'bg-gray-50 text-primary-500' : 'text-gray-700'}`}
                   >
                     {t.japanese}
@@ -84,7 +98,12 @@ const Hero = () => {
             )}
           </li>
           <li>
-            <Link href="/" className="text-gray-700 hover:text-primary-500 transition-colors">{t.signIn}</Link>
+            <Link
+              href="/"
+              className="text-gray-700 transition-colors hover:text-primary-500"
+            >
+              {t.signIn}
+            </Link>
           </li>
         </NavbarTwoColumns>
       </Section>
@@ -95,7 +114,9 @@ const Hero = () => {
             <>
               {t.heroTitle.split('\n')[0]}
               <br />
-              <span className="text-primary-500">{t.heroTitle.split('\n')[1]}</span>
+              <span className="text-primary-500">
+                {t.heroTitle.split('\n')[1]}
+              </span>
             </>
           }
           description={t.heroDescription}

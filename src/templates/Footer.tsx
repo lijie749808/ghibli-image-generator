@@ -1,16 +1,16 @@
 import Link from 'next/link';
 
 import { Background } from '../background/Background';
+import { useLanguage } from '../contexts/LanguageContext';
 import { CenteredFooter } from '../footer/CenteredFooter';
 import { Section } from '../layout/Section';
-import { Logo } from './Logo';
-import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '../utils/translations';
+import { Logo } from './Logo';
 
 const Footer = () => {
   const { language, setLanguage } = useLanguage();
   const t = translations[language];
-  
+
   return (
     <Background color="bg-gray-100">
       <Section>
@@ -72,9 +72,11 @@ const Footer = () => {
             <Link href="/">{t.docs}</Link>
           </li>
           <li>
-            <select 
-              value={language} 
-              onChange={(e) => setLanguage(e.target.value as 'zh' | 'en' | 'ja')}
+            <select
+              value={language}
+              onChange={(e) =>
+                setLanguage(e.target.value as 'zh' | 'en' | 'ja')
+              }
               className="rounded border border-gray-300 bg-white px-2 py-1 text-gray-800"
             >
               <option value="zh">{t.chinese}</option>

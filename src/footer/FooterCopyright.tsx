@@ -1,13 +1,13 @@
-import { AppConfig } from '../utils/AppConfig';
 import { useLanguage } from '../contexts/LanguageContext';
+import { AppConfig } from '../utils/AppConfig';
 
 const FooterCopyright = () => {
   const { language } = useLanguage();
-  
+
   return (
     <div className="footer-copyright">
-      © Copyright {new Date().getFullYear()} {AppConfig.title[language]}. Made with{' '}
-      <a href="https://creativedesignsguru.com">CreativeDesignsGuru</a>.
+      © Copyright {new Date().getFullYear()} {AppConfig.title[language]}. Made
+      with <a href="https://creativedesignsguru.com">CreativeDesignsGuru</a>.
       {/*
        * PLEASE READ THIS SECTION
        * I'm an indie maker with limited resources and funds, I'll really appreciate if you could have a link to my website.

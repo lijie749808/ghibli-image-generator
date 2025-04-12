@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Section } from '@/layout/Section';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Section } from '@/layout/Section';
 import { translations } from '@/utils/translations';
 
 const HowToUse = () => {
@@ -9,10 +9,7 @@ const HowToUse = () => {
   const t = translations[language];
 
   return (
-    <Section
-      title={t.howToUseTitle}
-      description={t.howToUseDescription}
-    >
+    <Section title={t.howToUseTitle} description={t.howToUseDescription}>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
         <div className="text-center">
           <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-primary-100 text-xl font-bold text-primary-500">

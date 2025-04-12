@@ -1,5 +1,5 @@
-import { AppConfig } from '../utils/AppConfig';
 import { useLanguage } from '../contexts/LanguageContext';
+import { AppConfig } from '../utils/AppConfig';
 
 type ILogoProps = {
   xl?: boolean;
