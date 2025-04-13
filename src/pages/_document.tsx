@@ -10,7 +10,10 @@ class MyDocument extends Document {
       <Html lang={AppConfig.locale}>
         <Head>
           {/* Google Analytics 跟踪代码 */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-SN2C0Z7V7S"></script>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-SN2C0Z7V7S"
+          ></script>
           <script
             dangerouslySetInnerHTML={{
               __html: `
